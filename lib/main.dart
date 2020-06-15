@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'custom_card_widget.dart';
+import 'icon_content.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -29,6 +33,9 @@ class InputPage extends StatefulWidget {
 const bottomBarHeight = 80.0;
 const cardBackgroundColor = Color(0xFF1D1F33);
 const bottomBarColor = Color(0xFFEA1556);
+const borderCenterCirc = 20.0;
+const male = 'MALE';
+const female = 'FEMALE';
 
 class _InputPageState extends State<InputPage> {
   @override
@@ -42,17 +49,30 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                CustomCard(bdColor: cardBackgroundColor),
-                CustomCard(bdColor: cardBackgroundColor),
+                Expanded(
+                  child: CustomCardWidget(
+                      bdColor: cardBackgroundColor,
+                      customWidget:
+                          CustomButtonWidget(FontAwesomeIcons.mars, male)),
+                ),
+                Expanded(
+                  child: CustomCardWidget(
+                      bdColor: cardBackgroundColor,
+                      customWidget:
+                          CustomButtonWidget(FontAwesomeIcons.venus, female)),
+                ),
               ],
             ),
           ),
-          CustomCard(bdColor: cardBackgroundColor),
+          Expanded(
+            child: CustomCardWidget(
+                bdColor: cardBackgroundColor, borderCircular: borderCenterCirc),
+          ),
           Expanded(
             child: Row(
               children: [
-                CustomCard(bdColor: cardBackgroundColor),
-                CustomCard(bdColor: cardBackgroundColor),
+                Expanded(child: CustomCardWidget(bdColor: cardBackgroundColor)),
+                Expanded(child: CustomCardWidget(bdColor: cardBackgroundColor)),
               ],
             ),
           ),
@@ -72,25 +92,6 @@ class _InputPageState extends State<InputPage> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class CustomCard extends StatelessWidget {
-  final Color bdColor;
-
-  const CustomCard({@required this.bdColor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: bdColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
       ),
     );
   }
