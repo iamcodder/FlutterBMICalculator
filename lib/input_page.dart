@@ -17,28 +17,17 @@ const bottomBarColor = Color(0xFFEA1556);
 const borderCenterCirc = 20.0;
 const male = 'MALE';
 const female = 'FEMALE';
+const appBarTitle = 'BMI CALCULATOR';
+const bottomBarTitle = 'CALCULATE YOUR BMI';
 
 class _InputPageState extends State<InputPage> {
-  Color cardStateMale = deactiveCardColor;
-  Color cardStateFemale = deactiveCardColor;
-
-  void tiklandi(Gender gender) {
-    setState(() {
-      if (gender == Gender.MALE) {
-        cardStateMale = activeCardColor;
-        cardStateFemale = deactiveCardColor;
-      } else {
-        cardStateMale = deactiveCardColor;
-        cardStateFemale = activeCardColor;
-      }
-    });
-  }
+  Gender gender;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text(appBarTitle),
       ),
       body: Column(
         children: [
@@ -48,22 +37,30 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: CustomCardWidget(
-                        bdColor: cardStateMale,
+                        bdColor: gender == Gender.MALE
+                            ? activeCardColor
+                            : deactiveCardColor,
                         customWidget: CustomButtonWidget(FontAwesomeIcons.mars,
                             Gender.MALE.toShortString())),
                     onTap: () {
-                      tiklandi(Gender.MALE);
+                      setState(() {
+                        gender = Gender.MALE;
+                      });
                     },
                   ),
                 ),
                 Expanded(
                   child: GestureDetector(
                     child: CustomCardWidget(
-                        bdColor: cardStateFemale,
+                        bdColor: gender == Gender.MALE
+                            ? activeCardColor
+                            : deactiveCardColor,
                         customWidget: CustomButtonWidget(FontAwesomeIcons.venus,
                             Gender.FEMALE.toShortString())),
                     onTap: () {
-                      tiklandi(Gender.FEMALE);
+                      setState(() {
+                        gender = Gender.FEMALE;
+                      });
                     },
                   ),
                 ),
@@ -91,7 +88,7 @@ class _InputPageState extends State<InputPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'CALCULATE YOUR BMI',
+                  bottomBarTitle,
                   style: TextStyle(fontSize: 18.0, fontFamily: 'BalsamiqSans'),
                 )
               ],
