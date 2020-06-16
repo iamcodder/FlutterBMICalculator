@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/Enums/Gender.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,9 +22,9 @@ class _InputPageState extends State<InputPage> {
   Color cardStateMale = deactiveCardColor;
   Color cardStateFemale = deactiveCardColor;
 
-  void tiklandi(bool isClickedMale) {
+  void tiklandi(Gender gender) {
     setState(() {
-      if (isClickedMale) {
+      if (gender == Gender.MALE) {
         cardStateMale = activeCardColor;
         cardStateFemale = deactiveCardColor;
       } else {
@@ -48,10 +49,10 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     child: CustomCardWidget(
                         bdColor: cardStateMale,
-                        customWidget:
-                            CustomButtonWidget(FontAwesomeIcons.mars, male)),
+                        customWidget: CustomButtonWidget(FontAwesomeIcons.mars,
+                            Gender.MALE.toShortString())),
                     onTap: () {
-                      tiklandi(true);
+                      tiklandi(Gender.MALE);
                     },
                   ),
                 ),
@@ -59,10 +60,10 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     child: CustomCardWidget(
                         bdColor: cardStateFemale,
-                        customWidget:
-                            CustomButtonWidget(FontAwesomeIcons.venus, female)),
+                        customWidget: CustomButtonWidget(FontAwesomeIcons.venus,
+                            Gender.FEMALE.toShortString())),
                     onTap: () {
-                      tiklandi(false);
+                      tiklandi(Gender.FEMALE);
                     },
                   ),
                 ),
