@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+const iconSize = 80.0;
+const sizedBoxHeight = 15.0;
+const textFontSize = 18.0;
+const textBackColor = Color(0xFF878A96);
+
 class CustomButtonWidget extends StatelessWidget {
   final IconData icon;
   final String buttonText;
@@ -17,16 +22,17 @@ class CustomButtonWidget extends StatelessWidget {
         children: [
           IconButton(
               icon: FaIcon(icon),
-              iconSize: 80.0,
+              color: textBackColor,
+              iconSize: iconSize,
               onPressed: () {
                 print("Pressed");
               }),
           SizedBox(
-            height: 15.0,
+            height: sizedBoxHeight,
           ),
           Text(
             buttonText,
-            style: TextStyle(fontSize: 18.0, color: Color(0xFF878A96)),
+            style: TextStyle(fontSize: textFontSize, color: textBackColor),
           )
         ],
       ),
