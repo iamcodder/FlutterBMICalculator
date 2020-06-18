@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'custom_card_widget.dart';
+import 'custom_fab_widget.dart';
 import 'custom_slider_widget.dart';
 
 class InputPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class _InputPageState extends State<InputPage> {
   Gender gender;
   double sliderValue = 160;
   String textNumber = '180';
+  int weight = 75;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +106,69 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: CustomCardWidget(bdColor: kInactiveCardColor)),
-                Expanded(child: CustomCardWidget(bdColor: kInactiveCardColor)),
+                Expanded(
+                  child: CustomCardWidget(
+                    bdColor: kInactiveCardColor,
+                    customWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(kWeightTitle, style: kLabelTextStyle),
+                        Text('${weight.toString()}', style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CustomFabButton(
+                              iconData: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  if (weight > 1 && weight < 200) weight--;
+                                });
+                              },
+                            ),
+                            CustomFabButton(
+                                iconData: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    if (weight > 0 && weight < 199) weight++;
+                                  });
+                                }),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: CustomCardWidget(
+                        bdColor: kInactiveCardColor,
+                        customWidget: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(kAgeTitle, style: kLabelTextStyle),
+                            Text('${age.toString()}', style: kNumberTextStyle),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CustomFabButton(
+                                  iconData: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    setState(() {
+                                      if (age > 1 && age < 150) age--;
+                                    });
+                                  },
+                                ),
+                                CustomFabButton(
+                                  iconData: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      if (age > 0 && age < 149) age++;
+                                    });
+                                  },
+                                ),
+                              ],
+                            )
+                          ],
+                        ))),
               ],
             ),
           ),

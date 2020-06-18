@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomSliderWidget extends StatelessWidget {
@@ -19,7 +18,6 @@ class CustomSliderWidget extends StatelessWidget {
       value: sliderValue,
       min: minValue,
       max: maxValue,
-      activeColor: kBottomBarColor,
       onChanged: function,
     );
   }
