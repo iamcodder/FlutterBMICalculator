@@ -1,13 +1,16 @@
-import 'package:bmi_calculator/Enums/Gender.dart';
-import 'package:bmi_calculator/constant.dart';
-import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/Enums/gender.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'custom_card_widget.dart';
-import 'custom_fab_widget.dart';
-import 'custom_slider_widget.dart';
+import 'file:///C:/Users/iamcodder/FlutterProjects/bmi-calculator-flutter/lib/components/icon_content.dart';
+import 'file:///C:/Users/iamcodder/FlutterProjects/bmi-calculator-flutter/lib/data/constant.dart';
+
+import '../components/custom_card_widget.dart';
+import '../components/custom_fab_widget.dart';
+import '../components/custom_slider_widget.dart';
+import '../data/user_info.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,10 +19,10 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender gender;
-  double sliderValue = 160;
+  double sliderValue = 180;
   String textNumber = '180';
-  int weight = 75;
-  int age = 20;
+  int weight = 90;
+  int age = 80;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +74,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Text(
                     kHeightTitle,
-                    style: kLabelTextStyle,
+                    style: kLabelTextTransparentStyle,
                   ),
                   Row(
                     textBaseline: TextBaseline.alphabetic,
@@ -80,11 +83,11 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       Text(
                         textNumber,
-                        style: kNumberTextStyle,
+                        style: kNumberTextNormalStyle,
                       ),
                       Text(
                         kCmtTitle,
-                        style: kLabelTextStyle,
+                        style: kLabelTextTransparentStyle,
                       ),
                     ],
                   ),
@@ -95,7 +98,7 @@ class _InputPageState extends State<InputPage> {
                     function: (value) {
                       setState(() {
                         sliderValue = value;
-                        textNumber = '${value.toInt()}';
+                        textNumber = '${sliderValue.toInt()}';
                       });
                     },
                   ),
@@ -112,8 +115,9 @@ class _InputPageState extends State<InputPage> {
                     customWidget: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(kWeightTitle, style: kLabelTextStyle),
-                        Text('${weight.toString()}', style: kNumberTextStyle),
+                        Text(kWeightTitle, style: kLabelTextTransparentStyle),
+                        Text('${weight.toString()}',
+                            style: kNumberTextNormalStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -144,8 +148,9 @@ class _InputPageState extends State<InputPage> {
                         customWidget: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(kAgeTitle, style: kLabelTextStyle),
-                            Text('${age.toString()}', style: kNumberTextStyle),
+                            Text(kAgeTitle, style: kLabelTextTransparentStyle),
+                            Text('${age.toString()}',
+                                style: kNumberTextNormalStyle),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -174,7 +179,13 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/ResultPage');
+              UserInfo userInfo = UserInfo(sliderValue, weight);
+              String weightType = userInfo.weightType();
+              String bmi = userInfo.bmi();
+              String weightRange = userInfo.weightRange();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ResultPage(weightType, bmi, weightRange)));
             },
             child: Container(
               color: kBottomBarColor,
@@ -185,7 +196,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    kBottomBarTitle,
+                    kBottomCalculate,
                     style: TextStyle(
                         fontSize: 24.0,
                         fontFamily: 'BalsamiqSans',
