@@ -172,19 +172,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomBarColor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: KBottomBarHeight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  kBottomBarTitle,
-                  style: TextStyle(fontSize: 18.0, fontFamily: 'BalsamiqSans'),
-                )
-              ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/ResultPage');
+            },
+            child: Container(
+              color: kBottomBarColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: KBottomBarHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    kBottomBarTitle,
+                    style: TextStyle(
+                        fontSize: 24.0,
+                        fontFamily: 'BalsamiqSans',
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
             ),
           )
         ],

@@ -14,7 +14,7 @@ const kBottomBarColor = Color(0xFFEA1556);
 const kSliderOverlayColor = Color(0xFF311330);
 
 const kAppBarTitle = 'BMI CALCULATOR';
-const kBottomBarTitle = 'CALCULATE YOUR BMI';
+const kBottomBarTitle = 'CALCULATE';
 const kHeightTitle = 'HEIGHT';
 const kWeightTitle = 'WEIGHT';
 const kAgeTitle = 'AGE';

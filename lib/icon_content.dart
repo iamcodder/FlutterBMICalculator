@@ -19,7 +19,7 @@ class CustomButtonWidget extends StatelessWidget {
         children: [
           IconButton(
               icon: FaIcon(icon),
-              color: kTextBackColor,
+              color: Colors.white,
               iconSize: kIconSize,
               onPressed: () {
                 print("Pressed");
