@@ -1,16 +1,24 @@
+import 'package:bmi_calculator/components/custom_card_widget.dart';
+import 'package:bmi_calculator/components/custom_text_with_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Users/iamcodder/FlutterProjects/bmi-calculator-flutter/lib/components/custom_card_widget.dart';
 
 import '../data/constant.dart';
 
 class ResultPage extends StatelessWidget {
-  ResultPage(this.weightType, this.bmi, this.weightRange);
+  ResultPage(this.weightType, this.bmi, this.weightRange) {
+    if (bmi > 0 && bmi < 18.5) textColor = Colors.orangeAccent;
+    if (bmi >= 18.5 && bmi < 25) textColor = Colors.green;
+    if (bmi >= 25 && bmi < 30) textColor = Colors.orange;
+    if (bmi >= 30 && bmi < 35) textColor = Colors.deepOrangeAccent;
+    if (bmi >= 35 && bmi < 45) textColor = Colors.deepOrange;
+    if (bmi >= 45) textColor = Colors.red;
+  }
 
   final String weightType;
-  final String bmi;
+  final double bmi;
   final String weightRange;
+  Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +49,9 @@ class ResultPage extends StatelessWidget {
                       customWidget: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(weightType, style: kWeightTypeStyle),
-                          Text(bmi, style: kNumberTextBigStyle),
+                          CustomTextWithColor(textColor, weightType),
+                          Text(bmi.toStringAsFixed(1),
+                              style: kNumberTextBigStyle),
                           DoubleText(weightType, weightRange),
                         ],
                       ),

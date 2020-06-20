@@ -1,11 +1,10 @@
 import 'package:bmi_calculator/Enums/gender.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/data/constant.dart';
 import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'file:///C:/Users/iamcodder/FlutterProjects/bmi-calculator-flutter/lib/components/icon_content.dart';
-import 'file:///C:/Users/iamcodder/FlutterProjects/bmi-calculator-flutter/lib/data/constant.dart';
 
 import '../components/custom_card_widget.dart';
 import '../components/custom_fab_widget.dart';
@@ -22,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   double sliderValue = 180;
   String textNumber = '180';
   int weight = 90;
-  int age = 80;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +180,7 @@ class _InputPageState extends State<InputPage> {
             onTap: () {
               UserInfo userInfo = UserInfo(sliderValue, weight);
               String weightType = userInfo.weightType();
-              String bmi = userInfo.bmi();
+              double bmi = userInfo.bmi();
               String weightRange = userInfo.weightRange();
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) =>

@@ -28,6 +28,7 @@ const kKgMt = 'kg/m²';
 
 const kTextFontSize18 = 18.0;
 const kTextFontSize20 = 20.0;
+const kTextFontSize30 = 30.0;
 const kTextFontSize50 = 50.0;
 const kTextFontSize100 = 100.0;
 const kTextBackColor = Color(0xFF878A96);
